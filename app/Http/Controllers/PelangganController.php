@@ -88,16 +88,7 @@ class PelangganController extends Controller
         return redirect()->route('pelanggan.index')->with('success', 'Data  berhasil dihapus');
     }
 
-    public function caripelanggan(Request $request) {
-        $caripelanggan = $request->caripelanggan;
-
-        $pelanggans = DB::table('pelanggan')->where('nama_pelanggan', 'like', "%$caripelanggan%")->get();
-
-        return view('pelanggan.index')
-            ->with('pelanggans', $pelanggans);
-
-
-    }
+  
 
     public function softDelete($id) {
         DB::update('UPDATE pelanggan SET is_deleted = 1 WHERE id_pelanggan = :id_pelanggan', ['id_pelanggan' => $id]);

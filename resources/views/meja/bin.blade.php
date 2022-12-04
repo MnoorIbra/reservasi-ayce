@@ -15,34 +15,33 @@
                 <div class="card-header">{{ __('Data reservasi') }}</div>
 
                 <div class="card-body">
-                    <a href="{{ route('pelanggan.index') }}" type="button" class="btn btn-success rounded-3">Kembali</a>
+                    <a href="{{ route('meja.index') }}" type="button" class="btn btn-success rounded-3">Kembali</a>
 
 
 
 
                     <table class="table table-hover mt-2">
                         <thead>
-                            <tr>
-                                <th>No. </th>
-                                <th>ID </th>
-                                <th>Nama </th>
-                                <th>Nomer Telfon</th>
-                                <th>Meja</th>
-                            </tr>
+                          <tr>
+                            <th>No. </th>
+                            <th>ID </th>
+                            <th>paket </th>
+                            <th>Durasi</th>
+                          </tr>
                         </thead>
 
 
                         <tbody>
                             @php $no = 1; @endphp
-                            @foreach ($pelanggans as $pelanggan)
+                            @foreach ($mejas as $meja)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td>{{ $pelanggan->id_pelanggan }}</td>
-                                    <td>{{ $pelanggan->nama_pelanggan }}</td>
-                                    <td>{{ $pelanggan->no_telp }}</td>
-                                    <td>{{ $pelanggan->id_meja }}</td>
+                                    <td>{{ $meja->id_meja }}</td>
+                                    <td>{{ $meja->paket }}</td>
+                                    <td>{{ $meja->durasi_sewa }}</td>
+
                                     <td>
-                                        <a href="{{ route('pelanggan.restore', $pelanggan->id_pelanggan) }}" type="button"
+                                        <a href="{{ route('meja.restore', $meja->id_meja) }}" type="button"
                                             class="btn btn-secondary rounded-3">Restore</a>
 
 

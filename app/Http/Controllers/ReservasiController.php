@@ -14,8 +14,14 @@ class ReservasiController extends Controller
         $reservasis = Reservasi::all();
 
 
+
+
         return view('reservasi.index')
         ->with('reservasis', $reservasis);
+
+
+
+
 
     }
 
@@ -111,4 +117,36 @@ class ReservasiController extends Controller
 
     }
 
+    public function home(){
+        $joins = DB::table('reservasi')
+        ->join('pelanggan', 'reservasi.id_pelanggan', '=', 'pelanggan.id_pelanggan')
+        ->join('meja', 'reservasi.id_meja', '=', 'meja.id_meja')
+        ->select('reservasi.id_reservasi', 'pelanggan.nama_pelanggan', 'meja.paket', 'meja.durasi_sewa', 'reservasi.harga', 'reservasi.tanggal_reservasi' )
+        ->get();
+
+        return view('index')
+
+        ->with('joins', $joins);
+    }
+
+    public function caripelanggan(Request $request) {
+        $caripelanggan = $request->caripelanggan;
+
+        $joins = DB::table('reservasi')
+        ->join('pelanggan', 'reservasi.id_pelanggan', '=', 'pelanggan.id_pelanggan')
+        ->join('meja', 'reservasi.id_meja', '=', 'meja.id_meja')
+        ->select('reservasi.id_reservasi', 'pelanggan.nama_pelanggan', 'meja.paket', 'meja.durasi_sewa', 'reservasi.harga', 'reservasi.tanggal_reservasi' )
+        ->where('nama_pelanggan', 'like', "%$caripelanggan%")
+        ->orWhere('paket', 'like', "%$caripelanggan%")
+        ->orWhere('id_reservasi', 'like', "%$caripelanggan%")
+        ->orWhere('tanggal_reservasi', 'like', "%$caripelanggan%")
+        ->orWhere('durasi_sewa', 'like', "%$caripelanggan%")
+        ->orWhere('harga', 'like', "%$caripelanggan%")
+        ->get();
+
+        return view('index')
+        ->with('joins', $joins);
+
+
+    }
 }

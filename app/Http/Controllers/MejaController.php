@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 class MejaController extends Controller
 {
     public function index(){
-        $mejas = Meja::all();
+        $mejas = DB::select('SELECT * FROM meja where is_deleted = 0');
 
         return view('meja.index')
         ->with('mejas', $mejas);
@@ -86,6 +86,27 @@ class MejaController extends Controller
         return view('meja.index')
             ->with('datas', $datas);
 
+
+    }
+
+    public function softDelete($id) {
+        DB::update('UPDATE meja SET is_deleted = 1 WHERE id_meja = :id_meja', ['id_meja' => $id]);
+        return redirect()->route('meja.index')->with('success', 'Data dihapus sementara');
+    }
+
+    public function restore($id){
+        // DB::table('meja')->update(['is_deleted' => 0]);
+        DB::update('UPDATE meja SET is_deleted = 0 WHERE id_meja = :id_meja = 1', ['id_meja' => $id]);
+
+        return redirect()->route('meja.bin')->with('success', 'Data direstore');
+    }
+
+    public function Mejabin(){
+        $mejas = DB::select('SELECT * FROM meja where is_deleted = 1');
+
+
+        return view('meja.bin')
+        ->with('mejas', $mejas);
 
     }
 

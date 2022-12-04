@@ -1,27 +1,30 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('content')
-
-<h4 class="mt-5">Data Pelanggan</h4>
-
-<a href="{{ route('pelanggan.create') }}" type="button" class="btn btn-success rounded-3">Tambah Data</a>
-<a href="{{ route('meja.index') }}" type="button" class="btn btn-primary rounded-3">Pindah Meja</a>
-<a href="{{ route('reservasi.index') }}" type="button" class="btn btn-secondary rounded-3">Pindah Reservasi</a>
-
-<a href="{{ route('pelanggan.bin') }}" type="button" class="btn btn-secondary rounded-3 ">re bin</a>
-
-<p>Cari Data Pelanggan :</p>
-	<form action={{ route('pelanggan.cari') }} method="GET" >
-		<input type="search" name="caripelanggan" placeholder="Cari Pelanggan .." value="{{ Request::get('caripelanggan')}}">
-		<button class="btn btn-primary" type="submit">cari </button>
-	</form>
-
 
 @if($message = Session::get('success'))
     <div class="alert alert-success mt-3" role="alert">
         {{ $message }}
     </div>
 @endif
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Data Pelanggan') }}</div>
+
+                <div class="card-body">
+                    <a href="{{ route('pelanggan.create') }}" type="button" class="btn btn-success rounded-3">Tambah Data</a>
+
+
+<a href="{{ route('pelanggan.bin') }}" type="button" class="btn btn-secondary rounded-3 ">re bin</a>
+
+
+	
+
+
+
 
 <table class="table table-hover mt-2">
     <thead>
@@ -107,6 +110,13 @@
         @endforeach
     </tbody>
 </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 @stop

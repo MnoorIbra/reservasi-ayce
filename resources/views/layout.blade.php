@@ -21,14 +21,14 @@
     <body class="antialiased">
 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand ps-3" href="#">Reservasi Ayce</a>
+            <a class="navbar-brand ps-3" href="{{ route('reservasi.home') }}">Reservasi Ayce</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav">
                 <a class="nav-item nav-link {{ request()->is('reservasi') ? 'active' : '' }}" href="/reservasi">Reservasi </a>
-                <a class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{ route('pelanggan.index') }}">Pelanggan</a>
+                <a class="nav-item nav-link {{ request()->is('pelanggan') ? 'active' : '' }}" href="{{ route('pelanggan.index') }}">Pelanggan</a>
                 <a class="nav-item nav-link {{ request()->is('meja') ? 'active' : '' }}" href="{{ route('meja.index') }}">Meja</a>
 
               </div>
