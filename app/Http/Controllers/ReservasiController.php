@@ -11,7 +11,7 @@ use App\Models\Pelanggan;
 class ReservasiController extends Controller
 {
     public function index(){
-        $reservasis = Reservasi::all();
+        $reservasis = DB::select('SELECT * FROM reservasi WHERE is_deleted  = 0');
 
 
 
@@ -34,7 +34,7 @@ class ReservasiController extends Controller
 
     public function store (Request $request) {
         $request->validate([
-            'id_reservasi',
+            'id_reservasi', 'required',
             'id_pelanggan' => 'required',
             'id_meja' => 'required',
             'harga' => 'required',
@@ -63,7 +63,7 @@ class ReservasiController extends Controller
 
     public function update($id, Request $request) {
         $request->validate([
-            'id_reservasi',
+            'id_reservasi', 'required',
             'id_pelanggan' => 'required',
             'id_meja' => 'required',
             'harga' => 'required',
@@ -94,7 +94,7 @@ class ReservasiController extends Controller
         // Menggunakan laravel eloquent
         // reservasi::where('id_reservasi', $id)->delete();
 
-        return redirect()->route('reservasi.index')->with('success', 'Data  berhasil dihapus');
+        return redirect()->route('reservasi.bin')->with('success', 'Data  berhasil dihapus');
     }
 
     public function carireservasi(Request $request) {
@@ -112,9 +112,21 @@ class ReservasiController extends Controller
         $reservasis = DB::select('SELECT * FROM reservasi where is_deleted = 1');
 
 
-        return view('pelanggan.bin')
+        return view('reservasi.bin')
         ->with('reservasis', $reservasis);
 
+    }
+
+    public function softDelete($id) {
+        DB::update('UPDATE reservasi SET is_deleted = 1 WHERE id_reservasi = :id_reservasi', ['id_reservasi' => $id]);
+        return redirect()->route('reservasi.index')->with('success', 'Data dihapus sementara');
+    }
+
+    public function restore($id){
+        // DB::table('pelanggan')->update(['is_deleted' => 0]);
+        DB::update('UPDATE reservasi SET is_deleted = 0 WHERE id_reservasi = :id_reservasi ', ['id_reservasi' => $id]);
+
+        return redirect()->route('reservasi.bin')->with('success', 'Data direstore');
     }
 
     public function home(){
@@ -122,6 +134,9 @@ class ReservasiController extends Controller
         ->join('pelanggan', 'reservasi.id_pelanggan', '=', 'pelanggan.id_pelanggan')
         ->join('meja', 'reservasi.id_meja', '=', 'meja.id_meja')
         ->select('reservasi.id_reservasi', 'pelanggan.nama_pelanggan', 'meja.paket', 'meja.durasi_sewa', 'reservasi.harga', 'reservasi.tanggal_reservasi' )
+        ->where('reservasi.is_deleted', '0')
+        ->where('pelanggan.is_deleted', '0')
+        ->where('meja.is_deleted', '0')
         ->get();
 
         return view('index')

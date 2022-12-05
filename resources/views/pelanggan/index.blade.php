@@ -18,10 +18,10 @@
                     <a href="{{ route('pelanggan.create') }}" type="button" class="btn btn-success rounded-3">Tambah Data</a>
 
 
-<a href="{{ route('pelanggan.bin') }}" type="button" class="btn btn-secondary rounded-3 ">re bin</a>
+<a href="{{ route('pelanggan.bin') }}" type="button" class="btn btn-secondary rounded-3 ">Recycle Bin</a>
 
 
-	
+
 
 
 
@@ -48,7 +48,7 @@
                 <td>{{ $pelanggan->no_telp }}</td>
                 <td>{{ $pelanggan->id_meja }}</td>
                 <td>
-                    <a href="{{ route('pelanggan.edit', $pelanggan->id_pelanggan) }}" type="button" class="btn btn-info rounded-3">Ubah</a>
+                    <a href="{{ route('pelanggan.edit', $pelanggan->id_pelanggan) }}" type="button" class="btn btn-primary rounded-3">Ubah</a>
 
                     <!-- Button trigger modal -->
 
@@ -56,30 +56,7 @@
                         Hapus
                     </button>
 
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $pelanggan->id_pelanggan }}">
-                        Hapus
-                    </button>
 
-                    <div class="modal fade" id="hapusModal{{ $pelanggan->id_pelanggan }}" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="hapusModalLabel">Konfirmasi</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <form method="POST" action="{{ route('pelanggan.delete', $pelanggan->id_pelanggan) }}">
-                                    @csrf
-                                    <div class="modal-body">
-                                        Apakah anda yakin ingin menghapus {{ $pelanggan->nama_pelanggan}} ini? data tidak akan bisa dikembalikan
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                                        <button type="submit" class="btn btn-primary">Ya</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
 
 
 

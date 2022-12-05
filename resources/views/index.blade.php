@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Data reservasi') }}</div>
+                <div class="card-header">{{ __('Meja yang sudah dipesan') }}</div>
 
                 <div class="card-body">
 

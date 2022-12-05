@@ -28,7 +28,7 @@ class PelangganController extends Controller
 
     public function store (Request $request) {
         $request->validate([
-            'id_pelanggan',
+            'id_pelanggan', 'required',
             'nama_pelanggan' => 'required',
             'no_telp' => 'required',
             'id_meja' => 'required'
@@ -56,7 +56,7 @@ class PelangganController extends Controller
 
     public function update($id, Request $request) {
         $request->validate([
-            'id_pelanggan',
+            'id_pelanggan', 'required',
             'nama_pelanggan' => 'required',
             'no_telp' => 'required',
             'id_meja' => 'required'
@@ -85,10 +85,10 @@ class PelangganController extends Controller
         // Menggunakan laravel eloquent
         // pelanggan::where('id_pelanggan', $id)->delete();
 
-        return redirect()->route('pelanggan.index')->with('success', 'Data  berhasil dihapus');
+        return redirect()->route('pelanggan.bin')->with('success', 'Data  berhasil dihapus');
     }
 
-  
+
 
     public function softDelete($id) {
         DB::update('UPDATE pelanggan SET is_deleted = 1 WHERE id_pelanggan = :id_pelanggan', ['id_pelanggan' => $id]);
@@ -97,7 +97,7 @@ class PelangganController extends Controller
 
     public function restore($id){
         // DB::table('pelanggan')->update(['is_deleted' => 0]);
-        DB::update('UPDATE pelanggan SET is_deleted = 0 WHERE id_pelanggan = :id_pelanggan = 1', ['id_pelanggan' => $id]);
+        DB::update('UPDATE pelanggan SET is_deleted = 0 WHERE id_pelanggan = :id_pelanggan ', ['id_pelanggan' => $id]);
 
         return redirect()->route('pelanggan.bin')->with('success', 'Data direstore');
     }

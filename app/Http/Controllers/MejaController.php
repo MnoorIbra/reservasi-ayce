@@ -49,7 +49,7 @@ class MejaController extends Controller
 
     public function update($id, Request $request) {
         $request->validate([
-            'id_meja',
+            'id_meja', 'required',
             'paket' => 'required',
             'durasi_sewa' => 'required'
         ]);
@@ -75,7 +75,7 @@ class MejaController extends Controller
         // Menggunakan laravel eloquent
         // meja::where('id_meja', $id)->delete();
 
-        return redirect()->route('meja.index')->with('success', 'Data  berhasil dihapus');
+        return redirect()->route('meja.bin')->with('success', 'Data  berhasil dihapus');
     }
 
     public function carimeja(Request $request) {

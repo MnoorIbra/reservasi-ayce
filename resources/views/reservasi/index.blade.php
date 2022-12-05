@@ -16,8 +16,8 @@
 
                 <div class="card-body">
                     <a href="{{ route('reservasi.create') }}" type="button" class="btn btn-success rounded-3">Tambah Data</a>
-<a href="{{ route('meja.index') }}" type="button" class="btn btn-primary rounded-3">Pindah Meja</a>
-<a href="{{ route('pelanggan.index') }}" type="button" class="btn btn-secondary rounded-3">Pindah Pelanggan</a>
+<a href="{{ route('reservasi.bin') }}" type="button" class="btn btn-primary rounded-3">Recycle Bin</a>
+
 
 
 
@@ -46,22 +46,25 @@
                 <td>{{ $reservasi->harga }}</td>
                 <td>{{ $reservasi->tanggal_reservasi }}</td>
                 <td>
-                    <a href="" type="button" class="btn btn-warning rounded-3">Ubah</a>
+                    <a href="{{ route('reservasi.edit', $reservasi->id_reservasi ) }}" type="button" class="btn btn-warning rounded-3">Ubah</a>
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapusModal{{ $reservasi->id_reservasi }}">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#softhapusModal{{ $reservasi->id_reservasi }}">
                         Hapus
                     </button>
 
+
+
+
                     <!-- Modal -->
-                    <div class="modal fade" id="hapusModal{{ $reservasi->id_reservasi }}" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="softhapusModal{{ $reservasi->id_reservasi }}" tabindex="-1" aria-labelledby="hapusModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="hapusModalLabel">Konfirmasi</h5>
+                                    <h5 class="modal-title" id="softhapusModalLabel">Konfirmasi</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <form method="POST" action="{{ route('reservasi.delete', $reservasi->id_reservasi) }}">
+                                <form method="POST" action="{{ route('reservasi.softdelete', $reservasi->id_reservasi) }}">
                                     @csrf
                                     <div class="modal-body">
                                         Apakah anda yakin ingin menghapus id {{ $reservasi->id_reservasi}} ini?

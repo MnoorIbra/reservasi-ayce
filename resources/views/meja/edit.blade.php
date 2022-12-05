@@ -17,26 +17,23 @@
 <div class="card mt-4">
 	<div class="card-body">
 
-        <h5 class="card-title fw-bolder mb-3">Ubah Data meja {{ $data->id_meja }}</h5>
+        <h5 class="card-title fw-bolder mb-3">Ubah data meja {{ $meja->id_meja }}</h5>
 
-		<form method="post" action="{{ route('meja.update', $data->id_meja) }}">
+		<form method="post" action="{{ route('meja.update', $meja->id_meja) }}">
 			@csrf
             <div class="mb-3">
                 <label for="id_meja" class="form-label">ID meja</label>
-                <input type="text" class="form-control" id="id_meja" name="id_meja" value="{{ $data->id_meja }}">
+                <input type="text" class="form-control" id="id_meja" name="id_meja" value="{{ $meja->id_meja }}">
             </div>
 			<div class="mb-3">
-                <label for="nama_meja" class="form-label">Nama meja</label>
-                <input type="text" class="form-control" id="nama_meja" name="nama_meja" value="{{ $data->nama_meja }}">
-            </div>
-            <div class="mb-3">
-                <label for="no_telp" class="form-label">Nomer telp</label>
-                <input type="text" class="form-control" id="no_telp" name="no_telp" value="{{ $data->no_telp }}">
+                <label for="paket" class="form-label">paket </label>
+                <input type="text" class="form-control" id="nama_meja" name="paket" value="{{ $meja->paket }}">
             </div>
 
+
             <div class="mb-3">
-                <label for="id_meja" class="form-label">ID meja</label>
-                <input type="text" class="form-control" id="harga" name="id_meja" value="{{ $data->id_meja }}">
+                <label for="durasi_sewa" class="form-label">Durasi</label>
+                <input type="text" class="form-control" id="harga" name="durasi_sewa" value="{{ $meja->durasi_sewa }}">
 
             </div>
 

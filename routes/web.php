@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/pelanggan/softdelete/{id}', [PelangganController::class, 'softDelete'])->name('pelanggan.softdelete');
     Route::get('/pelanggan/restore{id}', [PelangganController::class, 'restore'])->name('pelanggan.restore');
     Route::get('/pelanggan/bin', [PelangganController::class, 'Pelangganbin'])->name('pelanggan.bin');
-    // Route::get('/pelanggan/bin', [ReservasiController::class, 'Reservasibin'])->name('pelanggan.bin');
+    Route::get('/reservasi/bin', [ReservasiController::class, 'Reservasibin'])->name('reservasi.bin');
 
 
     Route::get('/meja', [MejaController::class, 'index'])->name('meja.index');
@@ -50,6 +50,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reservasi/edit/{id}', [ReservasiController::class, 'edit'])->name('reservasi.edit');
     Route::post('/reservasi/update/{id}', [ReservasiController::class, 'update'])->name('reservasi.update');
     Route::post('reservasi/delete/{id}', [ReservasiController::class, 'delete'])->name('reservasi.delete');
+    Route::post('/reservasi/softdelete/{id}', [ReservasiController::class, 'softDelete'])->name('reservasi.softdelete');
+    Route::get('/reservasi/restore{id}', [ReservasiController::class, 'restore'])->name('reservasi.restore');
 });
 
 
