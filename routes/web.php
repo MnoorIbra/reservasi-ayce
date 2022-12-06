@@ -16,9 +16,12 @@ use App\Http\Controllers\ReservasiController;
 */
 
 Route::get('/', [ReservasiController::class, 'home'])->name('reservasi.home');
-Route::get('/home', [ReservasiController::class, 'home'])->name('reservasi.home');
 Route::get('/caripelanggan', [ReservasiController::class, 'caripelanggan'])->name('pelanggan.cari');
+
+
 Route::middleware(['auth'])->group(function () {
+
+Route::get('/home', [ReservasiController::class, 'home'])->name('reservasi.home');
     Route::get('/pelanggan', [PelangganController::class, 'index'])->name('pelanggan.index');
     Route::get('/pelanggan/add', [PelangganController::class, 'create'])->name('pelanggan.create');
     Route::post('store', [PelangganController::class, 'store'])->name('pelanggan.store');

@@ -36,7 +36,15 @@
 
             <div class="mb-3">
                 <label for="id_meja" class="form-label">ID meja</label>
-                <input type="text" class="form-control" id="harga" name="id_meja" value="{{ $data->id_meja }}">
+                {{-- <input type="text" class="form-control" id="harga" name="id_meja" value="{{ $data->id_meja }}"> --}}
+
+                <div class="form-group">
+                    <select class="form-control" name="id_meja">
+                        @foreach ($mejas as $dp)
+                            <option value="{{ $dp->id_meja }}">{{ $dp->paket}}</option>
+                        @endforeach
+                    </select>
+                </div>
 
             </div>
 

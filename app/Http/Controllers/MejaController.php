@@ -22,7 +22,7 @@ class MejaController extends Controller
 
     public function store (Request $request) {
         $request->validate([
-            'id_meja',
+
             'paket' => 'required',
             'durasi_sewa' => 'required'
 
@@ -49,14 +49,15 @@ class MejaController extends Controller
 
     public function update($id, Request $request) {
         $request->validate([
-            'id_meja', 'required',
+            'id_meja',
             'paket' => 'required',
             'durasi_sewa' => 'required'
         ]);
 
         // Menggunakan Query Builder Laravel dan Named Bindings untuk valuesnya
-        DB::update('UPDATE meja SET id_meja = :id_meja, paket = :paket,   durasi_sewa = :durasi_sewa WHERE id_meja = :id',
+        DB::update('UPDATE meja SET id_meja = :id_meja, paket = :paket, durasi_sewa = :durasi_sewa WHERE id_meja = :id',
         [
+            'id' => $id,
             'id_meja' => $request->id_meja,
             'paket' => $request->paket, // dia manggil tabel meja kolom nama meja
             'durasi_sewa' => $request->durasi_sewa

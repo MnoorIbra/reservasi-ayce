@@ -27,11 +27,26 @@
             </div>
 			<div class="mb-3">
                 <label for="id_pelanggan" class="form-label">ID pelanggan</label>
-                <input type="text" class="form-control" id="nama_pelanggan" name="id_pelanggan" value="{{ $data->id_pelanggan }}">
+                {{-- <input type="text" class="form-control" id="nama_pelanggan" name="id_pelanggan" value="{{ $data->id_pelanggan }}"> --}}
+
+                <div class="form-group">
+                    <select class="form-control" name="id_pelanggan">
+                        @foreach ($pelanggans as $pel)
+                            <option value="{{ $pel->id_pelanggan }}">{{ $pel->nama_pelanggan}}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
             <div class="mb-3">
                 <label for="id_meja" class="form-label">ID Meja</label>
-                <input type="text" class="form-control" id="no_telp" name="id_meja" value="{{ $data->id_meja }}">
+                {{-- <input type="text" class="form-control" id="no_telp" name="id_meja" value="{{ $data->id_meja }}"> --}}
+                <div class="form-group">
+                    <select class="form-control" name="id_meja">
+                        @foreach ($mejas as $dp)
+                            <option value="{{ $dp->id_meja }}">{{ $dp->paket}}</option>
+                        @endforeach
+                    </select>
+                </div>
             </div>
 
             <div class="mb-3">

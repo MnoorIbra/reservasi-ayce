@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 
-class PelangganController extends Controller
-{
+class PelangganController extends Controller {
     public function index(){
         $pelanggans = DB::select('SELECT * FROM pelanggan where is_deleted = 0');
 
@@ -28,7 +27,7 @@ class PelangganController extends Controller
 
     public function store (Request $request) {
         $request->validate([
-            'id_pelanggan', 'required',
+
             'nama_pelanggan' => 'required',
             'no_telp' => 'required',
             'id_meja' => 'required'
@@ -51,12 +50,14 @@ class PelangganController extends Controller
         $data = DB::table('pelanggan')->where('id_pelanggan',
         $id)->first();
 
-        return view('pelanggan.edit')->with('data', $data);
+        $mejas = Meja::all();
+
+        return view('pelanggan.edit')->with('data', $data) ->with('mejas', $mejas);
     }
 
     public function update($id, Request $request) {
         $request->validate([
-            'id_pelanggan', 'required',
+            'id_pelanggan',
             'nama_pelanggan' => 'required',
             'no_telp' => 'required',
             'id_meja' => 'required'
@@ -111,3 +112,5 @@ class PelangganController extends Controller
 
     }
 }
+
+

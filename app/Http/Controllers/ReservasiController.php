@@ -29,12 +29,12 @@ class ReservasiController extends Controller
 
         $mejas = Meja::all();
         $pelanggans = Pelanggan::all();
-        return view('reservasi.add', compact('mejas', 'pelanggans'));
+        return view('reservasi.add') ->with('mejas', $mejas)->with('pelanggans', $pelanggans);
     }
 
     public function store (Request $request) {
         $request->validate([
-            'id_reservasi', 'required',
+            'id_reservasi' => 'required',
             'id_pelanggan' => 'required',
             'id_meja' => 'required',
             'harga' => 'required',
@@ -58,16 +58,19 @@ class ReservasiController extends Controller
         $data = DB::table('reservasi')->where('id_reservasi',
         $id)->first();
 
-        return view('reservasi.edit')->with('data', $data);
+        $mejas = Meja::all();
+        $pelanggans = Pelanggan::all();
+
+        return view('reservasi.edit')->with('data', $data)->with('mejas', $mejas)->with('pelanggans', $pelanggans);
     }
 
     public function update($id, Request $request) {
         $request->validate([
-            'id_reservasi', 'required',
-            'id_pelanggan' => 'required',
-            'id_meja' => 'required',
-            'harga' => 'required',
-            'tanggal_reservasi' => 'required'
+            // 'id_reservasi' => 'required',
+            // 'id_pelanggan' => 'required',
+            // 'id_meja' => 'required',
+            // 'harga' => 'required',
+            // 'tanggal_reservasi' => 'required'
         ]);
 
         // Menggunakan Query Builder Laravel dan Named Bindings untuk valuesnya
